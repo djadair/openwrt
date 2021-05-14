@@ -58,6 +58,15 @@ menu "Global build settings"
 		bool "Enable signature checking in opkg"
 		default SIGNED_PACKAGES
 
+	config BUILD_DOCUMENTATION
+	        bool "Enable man/info components in builds"
+		default n
+		help
+		  This option enables the build of doc and man pages in
+		  components which allow conditional building of docs.
+		  If unsure select "n" since we do not install documentation
+		  in the target anyway.
+
 	comment "General build options"
 
 	config TESTING_KERNEL
