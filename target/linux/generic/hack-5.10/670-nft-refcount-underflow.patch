@@ -1,0 +1,15 @@
+--- a/net/netfilter/nf_tables_api.c
++++ b/net/netfilter/nf_tables_api.c
+@@ -5287,8 +5287,11 @@ static int nft_add_set_elem(struct nft_c
+ 			return -ENOMEM;
+ 
+ 		err = nft_expr_clone(expr, set->expr);
+-		if (err < 0)
++		if (err < 0) {
++			kfree(expr);
++			expr = NULL;
+ 			goto err_set_elem_expr;
++		}
+ 	}
+ 
+ 	err = nft_setelem_parse_key(ctx, set, &elem.key.val,
